@@ -1,0 +1,10 @@
+﻿<Window x:Class="FindMyBuddy.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Find My Buddy!" Icon="/images/findmybuddy.ico" Height="650" Width="825">
+    
+    <DockPanel>
+        <Frame x:Name="mainFrame" />
+    </DockPanel>
+    
+</Window>
