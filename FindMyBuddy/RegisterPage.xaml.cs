@@ -35,15 +35,21 @@ namespace FindMyBuddy
             client = new AmazonDynamoDBClient();
 
             // Get users table from DyanamoDB
-            usersTbl = Table.LoadTable(client, usersTblName); // Get DynamoDB table
+            try
+            {
+                usersTbl = Table.LoadTable(client, usersTblName); // Get DynamoDB table
+            }
+            catch (AmazonDynamoDBException e) { Console.WriteLine(e.Message); }
+            catch (AmazonServiceException e) { Console.WriteLine(e.Message); }
+            catch (Exception e) { Console.WriteLine(e.Message); }
         }
 
         private void submitBtn_Click(object sender, RoutedEventArgs e)
         {
             // Verify all fields are filled out
-            if (fNameBox.Text.Equals("") || lNameBox.Text.Equals("") || 
-                emailBox.Text.Equals("") || usernameBox.Text.Equals("") || 
-                passwordBox.Password.Equals("") || passwordConfirmBox.Password.Equals(""))
+            if (!fNameBox.Text.Equals("") && !lNameBox.Text.Equals("") &&
+                !emailBox.Text.Equals("") && !usernameBox.Text.Equals("") &&
+                !passwordBox.Password.Equals("") && !passwordConfirmBox.Password.Equals(""))
             {
                 // Verify that password fields match
                 String password = passwordBox.Password.ToString();
@@ -112,17 +118,21 @@ namespace FindMyBuddy
             };
 
             // Attempt to retrieve user from DynamoDB
-            Document doc = usersTbl.GetItem(username, config); // Get item from table
+            try
+            {
+                Document doc = usersTbl.GetItem(username, config); // Get item from table
 
-            // Username not taken
-            if (doc.Count == 0)
-            {
-                return true;
+                // Username not taken
+                if (doc == null)
+                {
+                    return true;
+                }
             }
-            else
-            {
-                return false;
-            }
+            catch (AmazonDynamoDBException e) { Console.WriteLine(e.Message); }
+            catch (AmazonServiceException e) { Console.WriteLine(e.Message); }
+            catch (Exception e) { Console.WriteLine(e.Message); }
+
+            return false;
         }
 
         private void addUser(User user)
@@ -138,7 +148,13 @@ namespace FindMyBuddy
             newUser["email"] = user.getEmail();
 
             // Add new user to DyanmoDB users table
-            usersTbl.PutItem(newUser);
+            try
+            {
+                usersTbl.PutItem(newUser);
+            }
+            catch (AmazonDynamoDBException e) { Console.WriteLine(e.Message); }
+            catch (AmazonServiceException e) { Console.WriteLine(e.Message); }
+            catch (Exception e) { Console.WriteLine(e.Message); }
         }
     }
 }
