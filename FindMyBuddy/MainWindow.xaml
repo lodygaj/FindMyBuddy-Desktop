@@ -4,7 +4,7 @@
         Title="Find My Buddy!" Icon="/images/findmybuddy.ico" Height="650" Width="825">
     
     <DockPanel>
-        <Frame x:Name="mainFrame" />
+        <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden"/>
     </DockPanel>
     
 </Window>

@@ -12,7 +12,14 @@
             <ImageBrush ImageSource="/images/findmybuddybackground.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
@@ -22,6 +29,24 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
+        
+        <Label Name="firstName" Grid.Row="1" Grid.Column="1" Content="First Name:" VerticalAlignment="Center" FontSize="20" Foreground="AntiqueWhite"/>
+        <Label Name="lastName" Grid.Row="2" Grid.Column="1" Content="Last Name:" VerticalAlignment="Center" FontSize="20" Foreground="AntiqueWhite"/>
+        <Label Name="email" Grid.Row="3" Grid.Column="1" Content="Email:" VerticalAlignment="Center" FontSize="20" Foreground="AntiqueWhite"/>
+        <Label Name="username" Grid.Row="4" Grid.Column="1" Content="Userame:" VerticalAlignment="Center" FontSize="20" Foreground="AntiqueWhite"/>
+        <Label Name="password" Grid.Row="5" Grid.Column="1" Content="Password:" VerticalAlignment="Center" FontSize="20" Foreground="AntiqueWhite"/>
+        <Label Name="confirmPassword" Grid.Row="6" Grid.Column="1" Content="Confirm Password:" VerticalAlignment="Center" FontSize="20" Foreground="AntiqueWhite"/>
+        
+        <TextBox Name="fNameBox" Grid.Row="1" Grid.Column="2" Margin="0,14,0,14" FontSize="19"/>
+        <TextBox Name="lNameBox" Grid.Row="2" Grid.Column="2" Margin="0,14,0,14" FontSize="19"/>
+        <TextBox Name="emailBox" Grid.Row="3" Grid.Column="2" Margin="0,14,0,14" FontSize="19"/>
+        <TextBox Name="usernameBox" Grid.Row="4" Grid.Column="2" Margin="0,14,0,14" FontSize="19"/>
+        <PasswordBox Name="passwordBox" Grid.Row="5" Grid.Column="2" Margin="0,14,0,14" FontSize="19"/>
+        <PasswordBox Name="passwordConfirmBox" Grid.Row="6" Grid.Column="2" Margin="0,14,0,14" FontSize="19"/>
+        
+        <Button Name="submitBtn" Grid.Row="7" Grid.Column="1" Content="Submit" Margin="20,10,20,10" Click="submitBtn_Click"/>
+        <Button Name="cancelBtn" Grid.Row="7" Grid.Column="2" Content="Cancel" Margin="20,10,20,10" Click="cancelBtn_Click"/>
 
+        <TextBlock Name="messageBlock" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="20" FontWeight="ExtraBold" Foreground="Red"/>
     </Grid>
 </Page>

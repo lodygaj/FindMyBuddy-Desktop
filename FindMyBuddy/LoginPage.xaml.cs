@@ -37,9 +37,9 @@ namespace FindMyBuddy
 
         private void loginBtn_Click(object sender, RoutedEventArgs e)
         {
-            // Get username and password rom text box
+            // Get username and password from text box
             String username = usernameBox.Text;
-            String password = passwordBox.Text;
+            String password = passwordBox.Password.ToString();
 
             Document document; // Document to be returned from DyanmoDB
             String passwordRetrieved = ""; // Password to be returned from Document
@@ -52,7 +52,7 @@ namespace FindMyBuddy
                     Table users = Table.LoadTable(client, userTbl); // Get DynamoDB table
                     GetItemOperationConfig config = new GetItemOperationConfig // Define GetItem operation
                     {
-                        AttributesToGet = new List<string> { "user", "password" },
+                        AttributesToGet = new List<string> { "username", "password" },
                         ConsistentRead = true
                     };
 
@@ -68,17 +68,20 @@ namespace FindMyBuddy
                 {
                     // Navigate to Menu page
                     NavigationService.Navigate(new MenuPage());
+                    Console.WriteLine("Correct username or password!");
                 }
                 else
                 {
                     // Incorrect username of password!
-                    Console.WriteLine("Incorrect username of password!");
+                    Console.WriteLine("Incorrect username or password!");
+                    messageBlock.Text = "Incorrect username or password!";
                 }
             }
             else
             {
                 // Must enter a username and password!
                 Console.WriteLine("Must enter a username and password!");
+                messageBlock.Text = "Must enter a username and password!";
             }
         }
 
